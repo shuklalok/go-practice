@@ -1,10 +1,9 @@
 package main
 
 import (
-	"io/ioutil"
+	"fmt"
+	"io"
 	"net/http"
-
-	"github.com/pkg/errors"
 )
 
 type Client struct {
@@ -18,12 +17,12 @@ func NewClient(url string) Client {
 func (c *Client) GetUpperCase(word string) (string, error) {
 	res, err := http.Get(c.url + "/upper?word=" + word)
 	if err != nil {
-		return "", errors.Wrap(err, "unable to complete GET request")
+		return "", fmt.Errorf("unable to complete GET request: %v", err)
 	}
 	defer res.Body.Close()
-	out, err := ioutil.ReadAll(res.Body)
+	out, err := io.ReadAll(res.Body)
 	if err != nil {
-		return "", errors.Wrap(err, "unable to read response")
+		return "", fmt.Errorf("unable to read response: %v", err)
 	}
 	return string(out), nil
 }

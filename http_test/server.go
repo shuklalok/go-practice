@@ -30,5 +30,5 @@ func UpperCaseHandler(wr http.ResponseWriter, req *http.Request) {
 		return
 	}
 	wr.WriteHeader(http.StatusOK)
-	fmt.Fprintf(wr, strings.ToUpper(word))
+	fmt.Fprint(wr, strings.ToUpper(word))
 }
