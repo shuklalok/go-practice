@@ -13,7 +13,7 @@ func TestClientUpperCase(t *testing.T) {
 	// A Server is an HTTP server listening on a system-chosen port
 	// on the local loopback interface, for use in end-to-end HTTP tests.
 	svr := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, expected)
+		fmt.Fprint(w, expected)
 	}))
 	defer svr.Close()
 
