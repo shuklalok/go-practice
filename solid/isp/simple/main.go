@@ -42,7 +42,7 @@ func areaSum(shape ...shape) (sum float64) {
 
 func volumeSum(shape ...shape) (sum float64) {
 	for _, s := range shape {
-		sum += s.area() + s.volume()
+		sum += s.volume()
 	}
 	return
 }
